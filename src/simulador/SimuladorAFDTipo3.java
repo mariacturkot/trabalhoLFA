@@ -30,8 +30,7 @@ public class SimuladorAFDTipo3 extends SimuladorLinguagem {
         resultado.adicionarPasso("Inicio no estado que representa quantidade par de a.",
                 estado, mostrarVazio(cadeia), "AFD ainda nao leu simbolos.");
 
-        int i;
-        for (i = 0; i < cadeia.length(); i++) {
+        for (int i = 0; i < cadeia.length(); i++) {
             char simbolo = cadeia.charAt(i);
             String estadoAnterior = estado;
 
@@ -70,8 +69,7 @@ public class SimuladorAFDTipo3 extends SimuladorLinguagem {
         resultado.adicionarPasso("Inicio esperando a parte dos a.",
                 estado, mostrarVazio(cadeia), "Estados de aceitacao: qA e qB.");
 
-        int i;
-        for (i = 0; i < cadeia.length(); i++) {
+        for (int i = 0; i < cadeia.length(); i++) {
             char simbolo = cadeia.charAt(i);
             String estadoAnterior = estado;
 
