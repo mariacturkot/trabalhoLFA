@@ -85,8 +85,7 @@ public class SimuladorAFDTipo3 extends SimuladorLinguagem {
 
             String operacao = "delta(" + estadoAnterior + ", " + simbolo + ") -> " + estado;
             resultado.adicionarOperacao(operacao);
-            resultado.adicionarPasso("Leitura do simbolo '" + simbolo
-                    + "' na posicao " + i + ".", estado,
+            resultado.adicionarPasso("Leitura do simbolo '" + simbolo + "' na posicao " + i + ".", estado,
                     mostrarVazio(cadeia.substring(0, i + 1)), operacao);
 
             if (erro) {
@@ -115,8 +114,7 @@ public class SimuladorAFDTipo3 extends SimuladorLinguagem {
         resultado.adicionarPasso("Inicio esperando o primeiro simbolo de um bloco ab.",
                 estado, mostrarVazio(cadeia), "q0 e estado de aceitacao.");
 
-        int i;
-        for (i = 0; i < cadeia.length(); i++) {
+        for (int i = 0; i < cadeia.length(); i++) {
             char simbolo = cadeia.charAt(i);
             String estadoAnterior = estado;
 

@@ -37,8 +37,7 @@ public class SimuladorAutomatoPilhaTipo2 extends SimuladorLinguagem {
         resultado.adicionarPasso("Inicio empilhando um marcador para cada a.",
                 estado, mostrarVazio(cadeia), pilhaComoTexto(pilha));
 
-        int i;
-        for (i = 0; i < cadeia.length(); i++) {
+        for (int i = 0; i < cadeia.length(); i++) {
             char simbolo = cadeia.charAt(i);
 
             if (simbolo == 'a' && estado.equals("qEmpilha")) {
@@ -96,8 +95,7 @@ public class SimuladorAutomatoPilhaTipo2 extends SimuladorLinguagem {
         resultado.adicionarPasso("Inicio com pilha vazia.",
                 estado, mostrarVazio(cadeia), pilhaComoTexto(pilha));
 
-        int i;
-        for (i = 0; i < cadeia.length(); i++) {
+        for (int i = 0; i < cadeia.length(); i++) {
             char simbolo = cadeia.charAt(i);
 
             if (simbolo == '(') {
