@@ -21,8 +21,7 @@ public class HierarquiaChomsky {
     }
 
     public Linguagem buscarLinguagem(int codigo) {
-        int i;
-        for (i = 0; i < linguagens.size(); i++) {
+        for (int i = 0; i < linguagens.size(); i++) {
             if (linguagens.get(i).getCodigo() == codigo) {
                 return linguagens.get(i);
             }
