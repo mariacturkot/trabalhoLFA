@@ -144,11 +144,10 @@ public class MenuPrincipal {
 
         System.out.println();
         System.out.println("Transicoes, regras ou operacoes usadas:");
-        if (resultado.getOperacoes().size() == 0) {
+        if (resultado.getOperacoes().isEmpty()) {
             System.out.println("- Nenhuma operacao registrada.");
         } else {
-            int i;
-            for (i = 0; i < resultado.getOperacoes().size(); i++) {
+            for (int i = 0; i < resultado.getOperacoes().size(); i++) {
                 System.out.println("- " + resultado.getOperacoes().get(i));
             }
         }
@@ -156,8 +155,7 @@ public class MenuPrincipal {
         System.out.println();
         System.out.println("Simulacao passo a passo:");
         List<PassoSimulacao> passos = resultado.getPassos();
-        int i;
-        for (i = 0; i < passos.size(); i++) {
+        for (int i = 0; i < passos.size(); i++) {
             PassoSimulacao passo = passos.get(i);
             System.out.println("Passo " + passo.getNumero());
             System.out.println("  Descricao: " + passo.getDescricao());
@@ -181,8 +179,7 @@ public class MenuPrincipal {
 
     private String listaComoTexto(List<String> itens) {
         StringBuilder texto = new StringBuilder();
-        int i;
-        for (i = 0; i < itens.size(); i++) {
+        for (int i = 0; i < itens.size(); i++) {
             texto.append(itens.get(i));
             if (i < itens.size() - 1) {
                 texto.append(", ");
@@ -192,7 +189,7 @@ public class MenuPrincipal {
     }
 
     private String mostrarVazio(String texto) {
-        if (texto.length() == 0) {
+        if (texto.isEmpty()) {
             return "epsilon";
         }
         return texto;
