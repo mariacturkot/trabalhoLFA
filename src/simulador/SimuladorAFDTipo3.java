@@ -3,7 +3,7 @@ package simulador;
 import linguagem.Linguagem;
 import resultado.ResultadoSimulacao;
 
-public class SimuladorAFD extends SimuladorLinguagem {
+public class SimuladorAFDTipo3 extends SimuladorLinguagem {
     public ResultadoSimulacao simular(Linguagem linguagem, String cadeia) {
         if (linguagem.getCodigo() == 1) {
             return simularParDeA(cadeia);
@@ -67,6 +67,7 @@ public class SimuladorAFD extends SimuladorLinguagem {
 
         ResultadoSimulacao resultado = new ResultadoSimulacao();
         String estado = "qA";
+        boolean lendoBs = false;
         boolean erro = false;
         resultado.adicionarPasso("Inicio esperando a parte dos a.",
                 estado, mostrarVazio(cadeia), "Estados de aceitacao: qA e qB.");
@@ -76,11 +77,10 @@ public class SimuladorAFD extends SimuladorLinguagem {
             char simbolo = cadeia.charAt(i);
             String estadoAnterior = estado;
 
-            if (estado.equals("qA") && simbolo == 'a') {
+            if (!lendoBs && simbolo == 'a') {
                 estado = "qA";
-            } else if (estado.equals("qA") && simbolo == 'b') {
-                estado = "qB";
-            } else if (estado.equals("qB") && simbolo == 'b') {
+            } else if (simbolo == 'b') {
+                lendoBs = true;
                 estado = "qB";
             } else {
                 estado = "qErro";
@@ -98,7 +98,7 @@ public class SimuladorAFD extends SimuladorLinguagem {
             }
         }
 
-        boolean aceita = !erro && (estado.equals("qA") || estado.equals("qB"));
+        boolean aceita = !erro;
         resultado.setPertence(aceita);
         if (aceita) {
             resultado.setMensagemFinal("Cadeia aceita: todos os a aparecem antes dos b.");

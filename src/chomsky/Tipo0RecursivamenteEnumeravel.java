@@ -3,13 +3,13 @@ package chomsky;
 import java.util.Arrays;
 
 import linguagem.Linguagem;
-import simulador.SimuladorMaquinaTuring;
+import simulador.SimuladorMaquinaTuringTipo0;
 
 public class Tipo0RecursivamenteEnumeravel extends HierarquiaChomsky {
     public Tipo0RecursivamenteEnumeravel() {
         super("Tipo 0 - Linguagens Recursivamente Enumeraveis", "Classe mais geral, associada a maquinas de Turing.");
 
-        SimuladorMaquinaTuring simulador = new SimuladorMaquinaTuring();
+        SimuladorMaquinaTuringTipo0 simulador = new SimuladorMaquinaTuringTipo0();
 
         adicionarLinguagem(new Linguagem(1,
                 "Maquina de Turing simples para a^n b^n",

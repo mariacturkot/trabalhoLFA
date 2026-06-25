@@ -3,14 +3,14 @@ package chomsky;
 import java.util.Arrays;
 
 import linguagem.Linguagem;
-import simulador.SimuladorAutomatoPilha;
+import simulador.SimuladorAutomatoPilhaTipo2;
 
 public class Tipo2LivreContexto extends HierarquiaChomsky {
     public Tipo2LivreContexto() {
         super("Tipo 2 - Linguagens Livres de Contexto",
                 "Classe reconhecida por automatos com pilha.");
 
-        SimuladorAutomatoPilha simulador = new SimuladorAutomatoPilha();
+        SimuladorAutomatoPilhaTipo2 simulador = new SimuladorAutomatoPilhaTipo2();
 
         adicionarLinguagem(new Linguagem(1,
                 "a^n b^n",

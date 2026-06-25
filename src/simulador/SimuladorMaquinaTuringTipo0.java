@@ -3,7 +3,7 @@ package simulador;
 import linguagem.Linguagem;
 import resultado.ResultadoSimulacao;
 
-public class SimuladorMaquinaTuring extends SimuladorLinguagem {
+public class SimuladorMaquinaTuringTipo0 extends SimuladorLinguagem {
     public ResultadoSimulacao simular(Linguagem linguagem, String cadeia) {
         if (linguagem.getCodigo() == 1) {
             return simularMTAnBn(cadeia);
@@ -39,7 +39,7 @@ public class SimuladorMaquinaTuring extends SimuladorLinguagem {
         boolean erro = false;
         int rodada = 1;
         while (true) {
-            int posA = procurar(fita, 'a');
+            int posA = procurarA(fita);
             if (posA == -1) {
                 break;
             }
@@ -49,7 +49,7 @@ public class SimuladorMaquinaTuring extends SimuladorLinguagem {
             resultado.adicionarPasso("Marcando o primeiro a nao processado.",
                     "qMarcaA", mostrarVazio(cadeia), fitaComoTexto(fita));
 
-            int posB = procurarDepois(fita, 'b', posA + 1);
+            int posB = procurarBDepois(fita, posA + 1);
             if (posB == -1) {
                 erro = true;
                 resultado.adicionarOperacao("Nao encontrou b correspondente");
@@ -145,20 +145,20 @@ public class SimuladorMaquinaTuring extends SimuladorLinguagem {
         return true;
     }
 
-    private int procurar(char[] texto, char simbolo) {
+    private int procurarA(char[] texto) {
         int i;
         for (i = 0; i < texto.length; i++) {
-            if (texto[i] == simbolo) {
+            if (texto[i] == 'a') {
                 return i;
             }
         }
         return -1;
     }
 
-    private int procurarDepois(char[] texto, char simbolo, int inicio) {
+    private int procurarBDepois(char[] texto, int inicio) {
         int i;
         for (i = inicio; i < texto.length; i++) {
-            if (texto[i] == simbolo) {
+            if (texto[i] == 'b') {
                 return i;
             }
         }

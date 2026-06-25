@@ -3,14 +3,14 @@ package chomsky;
 import java.util.Arrays;
 
 import linguagem.Linguagem;
-import simulador.SimuladorAFD;
+import simulador.SimuladorAFDTipo3;
 
 public class Tipo3Regular extends HierarquiaChomsky {
     public Tipo3Regular() {
         super("Tipo 3 - Linguagens Regulares",
                 "Menor classe da hierarquia. Pode ser reconhecida por automato finito.");
 
-        SimuladorAFD simulador = new SimuladorAFD();
+        SimuladorAFDTipo3 simulador = new SimuladorAFDTipo3();
 
         adicionarLinguagem(new Linguagem(1,
                 "Quantidade par de a sobre {a,b}",

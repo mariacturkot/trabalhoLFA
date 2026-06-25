@@ -1,12 +1,13 @@
 package simulador;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Iterator;
 
 import linguagem.Linguagem;
 import resultado.ResultadoSimulacao;
 
-public class SimuladorAutomatoPilha extends SimuladorLinguagem {
+public class SimuladorAutomatoPilhaTipo2 extends SimuladorLinguagem {
     public ResultadoSimulacao simular(Linguagem linguagem, String cadeia) {
         if (linguagem.getCodigo() == 1) {
             return simularAnBn(cadeia);
@@ -29,7 +30,7 @@ public class SimuladorAutomatoPilha extends SimuladorLinguagem {
         }
 
         ResultadoSimulacao resultado = new ResultadoSimulacao();
-        List<Character> pilha = new ArrayList<Character>();
+        Deque<Character> pilha = new ArrayDeque<>();
         String estado = "qEmpilha";
         boolean erro = false;
 
@@ -41,14 +42,14 @@ public class SimuladorAutomatoPilha extends SimuladorLinguagem {
             char simbolo = cadeia.charAt(i);
 
             if (simbolo == 'a' && estado.equals("qEmpilha")) {
-                pilha.add(Character.valueOf('A'));
+                pilha.addLast('A');
                 resultado.adicionarOperacao("Leu a: empilha A");
                 resultado.adicionarPasso("Empilhou A para o simbolo a.",
                         estado, mostrarVazio(cadeia.substring(0, i + 1)),
                         pilhaComoTexto(pilha));
             } else if (simbolo == 'b') {
                 estado = "qDesempilha";
-                if (pilha.size() == 0) {
+                if (pilha.isEmpty()) {
                     erro = true;
                     resultado.adicionarOperacao("Leu b com pilha vazia: erro");
                     resultado.adicionarPasso("Nao ha A para casar com este b.",
@@ -56,7 +57,7 @@ public class SimuladorAutomatoPilha extends SimuladorLinguagem {
                             pilhaComoTexto(pilha));
                     break;
                 }
-                pilha.remove(pilha.size() - 1);
+                pilha.removeLast();
                 resultado.adicionarOperacao("Leu b: desempilha A");
                 resultado.adicionarPasso("Desempilhou A para casar com b.",
                         estado, mostrarVazio(cadeia.substring(0, i + 1)),
@@ -72,7 +73,7 @@ public class SimuladorAutomatoPilha extends SimuladorLinguagem {
             }
         }
 
-        boolean aceita = !erro && pilha.size() == 0;
+        boolean aceita = !erro && pilha.isEmpty();
         resultado.setPertence(aceita);
         if (aceita) {
             resultado.setMensagemFinal("Cadeia aceita: todo a teve um b correspondente.");
@@ -88,7 +89,7 @@ public class SimuladorAutomatoPilha extends SimuladorLinguagem {
         }
 
         ResultadoSimulacao resultado = new ResultadoSimulacao();
-        List<Character> pilha = new ArrayList<Character>();
+        Deque<Character> pilha = new ArrayDeque<>();
         String estado = "qLeitura";
         boolean erro = false;
 
@@ -100,13 +101,13 @@ public class SimuladorAutomatoPilha extends SimuladorLinguagem {
             char simbolo = cadeia.charAt(i);
 
             if (simbolo == '(') {
-                pilha.add(Character.valueOf('('));
+                pilha.addLast('(');
                 resultado.adicionarOperacao("Leu (: empilha (");
                 resultado.adicionarPasso("Guardou uma abertura na pilha.",
                         estado, mostrarVazio(cadeia.substring(0, i + 1)),
                         pilhaComoTexto(pilha));
             } else {
-                if (pilha.size() == 0) {
+                if (pilha.isEmpty()) {
                     erro = true;
                     resultado.adicionarOperacao("Leu ) com pilha vazia: erro");
                     resultado.adicionarPasso("Fechamento sem abertura correspondente.",
@@ -114,7 +115,7 @@ public class SimuladorAutomatoPilha extends SimuladorLinguagem {
                             pilhaComoTexto(pilha));
                     break;
                 }
-                pilha.remove(pilha.size() - 1);
+                pilha.removeLast();
                 resultado.adicionarOperacao("Leu ): desempilha (");
                 resultado.adicionarPasso("Fechamento casou com a abertura do topo.",
                         estado, mostrarVazio(cadeia.substring(0, i + 1)),
@@ -122,7 +123,7 @@ public class SimuladorAutomatoPilha extends SimuladorLinguagem {
             }
         }
 
-        boolean aceita = !erro && pilha.size() == 0;
+        boolean aceita = !erro && pilha.isEmpty();
         resultado.setPertence(aceita);
         if (aceita) {
             resultado.setMensagemFinal("Cadeia aceita: parenteses balanceados.");
@@ -138,7 +139,7 @@ public class SimuladorAutomatoPilha extends SimuladorLinguagem {
         }
 
         ResultadoSimulacao resultado = new ResultadoSimulacao();
-        List<Character> pilha = new ArrayList<Character>();
+        Deque<Character> pilha = new ArrayDeque<>();
         String estado = "qEmpilhaMetade";
         boolean erro = false;
         int meio = cadeia.length() / 2;
@@ -149,7 +150,7 @@ public class SimuladorAutomatoPilha extends SimuladorLinguagem {
 
         int i;
         for (i = 0; i < meio; i++) {
-            pilha.add(Character.valueOf(cadeia.charAt(i)));
+            pilha.addLast(cadeia.charAt(i));
             resultado.adicionarOperacao("Empilha " + cadeia.charAt(i));
             resultado.adicionarPasso("Empilhou simbolo da primeira metade.",
                     estado, cadeia.substring(0, i + 1), pilhaComoTexto(pilha));
@@ -169,16 +170,16 @@ public class SimuladorAutomatoPilha extends SimuladorLinguagem {
 
         for (i = inicioSegundaMetade; i < cadeia.length(); i++) {
             char simbolo = cadeia.charAt(i);
-            if (pilha.size() == 0) {
+            if (pilha.isEmpty()) {
                 erro = true;
                 resultado.adicionarPasso("Pilha acabou antes da comparacao terminar.",
                         "qErro", cadeia.substring(0, i + 1), pilhaComoTexto(pilha));
                 break;
             }
 
-            char topo = pilha.get(pilha.size() - 1).charValue();
+            char topo = pilha.getLast();
             if (topo == simbolo) {
-                pilha.remove(pilha.size() - 1);
+                pilha.removeLast();
                 resultado.adicionarOperacao("Compara " + simbolo + " com topo " + topo
                         + ": desempilha");
                 resultado.adicionarPasso("Simbolo da segunda metade casou com o topo.",
@@ -193,7 +194,7 @@ public class SimuladorAutomatoPilha extends SimuladorLinguagem {
             }
         }
 
-        boolean aceita = !erro && pilha.size() == 0;
+        boolean aceita = !erro && pilha.isEmpty();
         resultado.setPertence(aceita);
         if (aceita) {
             resultado.setMensagemFinal("Cadeia aceita: a cadeia e palindromo.");
@@ -203,17 +204,17 @@ public class SimuladorAutomatoPilha extends SimuladorLinguagem {
         return resultado;
     }
 
-    private String pilhaComoTexto(List<Character> pilha) {
-        if (pilha.size() == 0) {
+    private String pilhaComoTexto(Deque<Character> pilha) {
+        if (pilha.isEmpty()) {
             return "pilha vazia";
         }
 
         StringBuilder texto = new StringBuilder();
         texto.append("topo -> ");
-        int i;
-        for (i = pilha.size() - 1; i >= 0; i--) {
-            texto.append(pilha.get(i));
-            if (i > 0) {
+        Iterator<Character> iterator = pilha.descendingIterator();
+        while (iterator.hasNext()) {
+            texto.append(iterator.next());
+            if (iterator.hasNext()) {
                 texto.append(" ");
             }
         }

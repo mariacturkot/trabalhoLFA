@@ -3,7 +3,7 @@ package simulador;
 import linguagem.Linguagem;
 import resultado.ResultadoSimulacao;
 
-public class SimuladorMarcacao extends SimuladorLinguagem {
+public class SimuladorMarcacaoTipo1 extends SimuladorLinguagem {
     public ResultadoSimulacao simular(Linguagem linguagem, String cadeia) {
         if (linguagem.getCodigo() == 1) {
             return simularAnBnCn(cadeia);
@@ -23,7 +23,7 @@ public class SimuladorMarcacao extends SimuladorLinguagem {
         }
 
         ResultadoSimulacao resultado = new ResultadoSimulacao();
-        if (cadeia.length() == 0) {
+        if (cadeia.isEmpty()) {
             resultado.setPertence(false);
             resultado.setMensagemFinal("Cadeia rejeitada: para a^n b^n c^n foi usado n >= 1.");
             resultado.adicionarPasso("Entrada vazia nao atende ao n >= 1.",
@@ -47,7 +47,7 @@ public class SimuladorMarcacao extends SimuladorLinguagem {
         int rodada = 1;
         boolean erro = false;
         while (true) {
-            int posA = procurar(marcacao, 'a');
+            int posA = procurarA(marcacao);
             if (posA == -1) {
                 break;
             }
@@ -176,10 +176,10 @@ public class SimuladorMarcacao extends SimuladorLinguagem {
         return true;
     }
 
-    private int procurar(char[] texto, char simbolo) {
+    private int procurarA(char[] texto) {
         int i;
         for (i = 0; i < texto.length; i++) {
-            if (texto[i] == simbolo) {
+            if (texto[i] == 'a') {
                 return i;
             }
         }
