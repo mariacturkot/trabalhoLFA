@@ -18,7 +18,7 @@ public class SimuladorMarcacaoTipo1 extends SimuladorLinguagem {
     }
 
     private ResultadoSimulacao simularAnBnCn(String cadeia) {
-        if (!contemApenas(cadeia, "abc")) {
+        if (contemSimboloInvalido(cadeia, "abc")) {
             return rejeitarPorSimboloInvalido(cadeia, "abc");
         }
 
@@ -103,7 +103,7 @@ public class SimuladorMarcacaoTipo1 extends SimuladorLinguagem {
     }
 
     private ResultadoSimulacao simularWW(String cadeia) {
-        if (!contemApenas(cadeia, "ab")) {
+        if (contemSimboloInvalido(cadeia, "ab")) {
             return rejeitarPorSimboloInvalido(cadeia, "ab");
         }
 
@@ -213,3 +213,4 @@ public class SimuladorMarcacaoTipo1 extends SimuladorLinguagem {
         return new String(texto);
     }
 }
+

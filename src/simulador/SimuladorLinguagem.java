@@ -13,14 +13,14 @@ public class SimuladorLinguagem {
         return resultado;
     }
 
-    protected boolean contemApenas(String cadeia, String simbolosPermitidos) {
+    protected boolean contemSimboloInvalido(String cadeia, String simbolosPermitidos) {
         int i;
         for (i = 0; i < cadeia.length(); i++) {
             if (simbolosPermitidos.indexOf(cadeia.charAt(i)) == -1) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     protected ResultadoSimulacao rejeitarPorSimboloInvalido(
@@ -38,7 +38,7 @@ public class SimuladorLinguagem {
     }
 
     protected String mostrarVazio(String texto) {
-        if (texto.length() == 0) {
+        if (texto.isEmpty()) {
             return "epsilon";
         }
         return texto;

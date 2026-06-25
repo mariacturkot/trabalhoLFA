@@ -18,7 +18,7 @@ public class SimuladorMaquinaTuringTipo0 extends SimuladorLinguagem {
     }
 
     private ResultadoSimulacao simularMTAnBn(String cadeia) {
-        if (!contemApenas(cadeia, "ab")) {
+        if (contemSimboloInvalido(cadeia, "ab")) {
             return rejeitarPorSimboloInvalido(cadeia, "ab");
         }
 
@@ -86,7 +86,7 @@ public class SimuladorMaquinaTuringTipo0 extends SimuladorLinguagem {
     }
 
     private ResultadoSimulacao simularMTParDeA(String cadeia) {
-        if (!contemApenas(cadeia, "ab")) {
+        if (contemSimboloInvalido(cadeia, "ab")) {
             return rejeitarPorSimboloInvalido(cadeia, "ab");
         }
 
@@ -182,3 +182,4 @@ public class SimuladorMaquinaTuringTipo0 extends SimuladorLinguagem {
         return new String(fita) + "_";
     }
 }
+

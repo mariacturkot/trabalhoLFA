@@ -25,7 +25,7 @@ public class SimuladorAutomatoPilhaTipo2 extends SimuladorLinguagem {
     }
 
     private ResultadoSimulacao simularAnBn(String cadeia) {
-        if (!contemApenas(cadeia, "ab")) {
+        if (contemSimboloInvalido(cadeia, "ab")) {
             return rejeitarPorSimboloInvalido(cadeia, "ab");
         }
 
@@ -84,7 +84,7 @@ public class SimuladorAutomatoPilhaTipo2 extends SimuladorLinguagem {
     }
 
     private ResultadoSimulacao simularParenteses(String cadeia) {
-        if (!contemApenas(cadeia, "()")) {
+        if (contemSimboloInvalido(cadeia, "()")) {
             return rejeitarPorSimboloInvalido(cadeia, "()");
         }
 
@@ -134,7 +134,7 @@ public class SimuladorAutomatoPilhaTipo2 extends SimuladorLinguagem {
     }
 
     private ResultadoSimulacao simularPalindromo(String cadeia) {
-        if (!contemApenas(cadeia, "ab")) {
+        if (contemSimboloInvalido(cadeia, "ab")) {
             return rejeitarPorSimboloInvalido(cadeia, "ab");
         }
 
@@ -221,3 +221,4 @@ public class SimuladorAutomatoPilhaTipo2 extends SimuladorLinguagem {
         return texto.toString();
     }
 }
+

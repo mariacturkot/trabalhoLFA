@@ -21,7 +21,7 @@ public class SimuladorAFDTipo3 extends SimuladorLinguagem {
     }
 
     private ResultadoSimulacao simularParDeA(String cadeia) {
-        if (!contemApenas(cadeia, "ab")) {
+        if (contemSimboloInvalido(cadeia, "ab")) {
             return rejeitarPorSimboloInvalido(cadeia, "ab");
         }
 
@@ -45,9 +45,7 @@ public class SimuladorAFDTipo3 extends SimuladorLinguagem {
 
             String operacao = "delta(" + estadoAnterior + ", " + simbolo + ") -> " + estado;
             resultado.adicionarOperacao(operacao);
-            resultado.adicionarPasso("Leitura do simbolo '" + simbolo
-                    + "' na posicao " + i + ".", estado,
-                    mostrarVazio(cadeia.substring(0, i + 1)), operacao);
+            resultado.adicionarPasso("Leitura do simbolo '" + simbolo + "' na posicao " + i + ".", estado, mostrarVazio(cadeia.substring(0, i + 1)), operacao);
         }
 
         boolean aceita = estado.equals("qPar");
@@ -61,7 +59,7 @@ public class SimuladorAFDTipo3 extends SimuladorLinguagem {
     }
 
     private ResultadoSimulacao simularAEstrelaBEstrela(String cadeia) {
-        if (!contemApenas(cadeia, "ab")) {
+        if (contemSimboloInvalido(cadeia, "ab")) {
             return rejeitarPorSimboloInvalido(cadeia, "ab");
         }
 
@@ -109,7 +107,7 @@ public class SimuladorAFDTipo3 extends SimuladorLinguagem {
     }
 
     private ResultadoSimulacao simularABRepetido(String cadeia) {
-        if (!contemApenas(cadeia, "ab")) {
+        if (contemSimboloInvalido(cadeia, "ab")) {
             return rejeitarPorSimboloInvalido(cadeia, "ab");
         }
 
@@ -154,3 +152,4 @@ public class SimuladorAFDTipo3 extends SimuladorLinguagem {
         return resultado;
     }
 }
+
